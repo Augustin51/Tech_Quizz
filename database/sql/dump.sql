@@ -68,3 +68,4 @@ alter table THROUGH_TABLE add constraint FK_THROUGH foreign key (ID_RESPONSE)
 
 alter table THROUGH_TABLE add constraint FK_THROUGH2 foreign key (ID_QUESTION)
     references QUESTION (ID_QUESTION) on delete restrict on update restrict;
+
