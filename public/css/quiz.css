@@ -100,7 +100,7 @@ label {
 
 .input,
 label,
-.button{
+.button, a{
     cursor: pointer;
 }
 
@@ -177,7 +177,10 @@ label,
 }
 
 
-.button {
+.button, .next-question {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 90%;
     margin-top: 10px;
     background-color: #A729F5;
@@ -221,6 +224,10 @@ label,
 .wrong-answer {
     border: 2px solid #EE5454;
     background-color: white;
+}
+
+.hidden {
+    display: none;
 }
 
 

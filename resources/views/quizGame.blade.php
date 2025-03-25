@@ -58,7 +58,8 @@
                     <div class="bad"><i class="ri-close-line"></i></div>
                 </div>
                 <input type="hidden" id="goodAnswer" value="{{ $quiz['real_answer'] }}">
-                <input class="button" type="submit" value="Submit Answer" data-url="/quiz/{{ $quiz['id_quiz'] }}/2">
+                <input class="button" type="submit" value="Submit Answer">
+                <a href="/quiz/{{ $quiz['id_quiz'] }}/{{ $quiz['id_question'] + 1 }}" class="next-question hidden">Next Question</a>
             </form>
         </div>
 
@@ -75,19 +76,24 @@
         const buttonSwitch = document.querySelector('.button');
         const selectedAnswer = document.querySelector('input[name="answer"]:checked');
         const goodAnswer = document.querySelector('#goodAnswer');
-        const inputs = document.querySelectorAll('input.hidden')
-        buttonSwitch.value = 'Next Question';
+        const inputs = document.querySelectorAll('input.hidden');
+        const nextQuestion = document.querySelector('.next-question');
 
-        if (selectedAnswer.value === goodAnswer.value) {
-            console.log('good answer')
-            selectedAnswer.classList.add('correct-answer')
+        if(selectedAnswer != null) {
+            buttonSwitch.classList.add('hidden');
+            nextQuestion.classList.remove('hidden');
 
-        } else {
-            console.log('bad answer')
-            selectedAnswer.classList.add('wrong-answer')
-            goodAnswer.classList.add('good-answer')
+            if (selectedAnswer.value === goodAnswer.value) {
+                console.log('good answer')
+                selectedAnswer.classList.add('correct-answer')
+
+            } else {
+                console.log('bad answer')
+                selectedAnswer.classList.add('wrong-answer')
+                goodAnswer.classList.add('good-answer')
+            }
+            inputs.forEach((input) => input.disabled = true)
         }
-        inputs.forEach((input) => input.disabled = true)
     })
 </script>
 
