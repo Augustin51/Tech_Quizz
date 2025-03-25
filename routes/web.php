@@ -7,8 +7,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/{nameQuiz}/result', function ($nameQuiz) {
-    return view('result', ['nameQuiz' => $nameQuiz]);
+Route::get('/quiz/{idQuiz}/result', function ($idQuiz) {
+    return view('result', ['idQuiz' => $idQuiz]);
 });
 
 
