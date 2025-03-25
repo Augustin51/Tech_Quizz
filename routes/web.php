@@ -7,9 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/quiz/{idQuiz}/result', function ($idQuiz) {
-    return view('result', ['idQuiz' => $idQuiz]);
-});
+Route::get('/quiz/{idQuiz}/result', [\App\Http\Controllers\QuzzController::class, 'finalResult']);
 
 
 Route::get('/dashboard', function () {

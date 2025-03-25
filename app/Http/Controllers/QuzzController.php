@@ -24,4 +24,11 @@ class QuzzController extends Controller
 
         return view('quizGame', ['quiz' => $quizData->toArray(), 'nameQuiz' => $nameQuiz->toArray()['name_quiz']]);
     }
+
+    public function finalResult(int $id_quiz)
+    {
+        $nameQuiz = Quiz::where('id_quiz', $id_quiz)->first();
+
+        return view('result', ['nameQuiz' => $nameQuiz->toArray()['name_quiz']]);
+    }
 }
