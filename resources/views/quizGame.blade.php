@@ -1,4 +1,3 @@
-{{ var_dump($_POST) }}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -34,24 +33,32 @@
                     <div class="label">A</div>
                     <label for="f_answer">{{ $quiz['f_answer'] }}</label>
                     <input class="hidden" type="radio" name="answer" id="f_answer" value="{{ $quiz['f_answer'] }}">
+                    <div class="good"><i class="ri-check-line"></i></div>
+                    <div class="bad"><i class="ri-close-line"></i></div>
                 </div>
                 <div class="input">
                     <div class="label">B</div>
                     <label for="s_answer">{{ $quiz['s_answer'] }}</label>
                     <input class="hidden" type="radio" name="answer" id="s_answer" value="{{ $quiz['s_answer'] }}">
+                    <div class="good"><i class="ri-check-line"></i></div>
+                    <div class="bad"><i class="ri-close-line"></i></div>
                 </div>
                 <div class="input">
                     <div class="label">C</div>
                     <label for="t_answer">{{ $quiz['t_answer'] }}</label>
                     <input class="hidden" type="radio" name="answer" id="t_answer" value="{{ $quiz['t_answer'] }}">
+                    <div class="good"><i class="ri-check-line"></i></div>
+                    <div class="bad"><i class="ri-close-line"></i></div>
                 </div>
                 <div class="input">
                     <div class="label">D</div>
                     <label for="fth-answer">{{ $quiz['fth-answer'] }}</label>
                     <input class="hidden" type="radio" name="answer" id="fth-answer" value="{{ $quiz['fth-answer'] }}">
+                    <div class="good"><i class="ri-check-line"></i></div>
+                    <div class="bad"><i class="ri-close-line"></i></div>
                 </div>
                 <input type="hidden" id="goodAnswer" value="{{ $quiz['real_answer'] }}">
-                <input class="button" type="submit" value="Submit Answer">
+                <input class="button" type="submit" value="Submit Answer" data-url="/quiz/{{ $quiz['id_quiz'] }}/2">
             </form>
         </div>
 
@@ -65,13 +72,22 @@
     document.querySelector('form').addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const selectedAnswer = document.querySelector('input[name="answer"]:checked').value;
-        const goodAnswer = document.querySelector('#goodAnswer').value;
-        if (selectedAnswer === goodAnswer) {
+        const buttonSwitch = document.querySelector('.button');
+        const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+        const goodAnswer = document.querySelector('#goodAnswer');
+        const inputs = document.querySelectorAll('input.hidden')
+        buttonSwitch.value = 'Next Question';
+
+        if (selectedAnswer.value === goodAnswer.value) {
             console.log('good answer')
+            selectedAnswer.classList.add('correct-answer')
+
         } else {
             console.log('bad answer')
+            selectedAnswer.classList.add('wrong-answer')
+            goodAnswer.classList.add('good-answer')
         }
+        inputs.forEach((input) => input.disabled = true)
     })
 </script>
 
