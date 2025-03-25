@@ -1,3 +1,4 @@
+{{ var_dump($_POST) }}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -27,28 +28,29 @@
             </div>
         </div>
         <div>
-            <form action="/quiz/{{ $quiz['id_quiz'] }}/{{ $quiz['nb_question'] }}">
+            <form action="" method="post">
                 @csrf
                 <div class="input">
                     <div class="label">A</div>
                     <label for="f_answer">{{ $quiz['f_answer'] }}</label>
-                    <input class="hidden" type="radio" name="answer" id="f_answer" value="50cm" class="hidden">
+                    <input class="hidden" type="radio" name="answer" id="f_answer" value="{{ $quiz['f_answer'] }}">
                 </div>
                 <div class="input">
                     <div class="label">B</div>
                     <label for="s_answer">{{ $quiz['s_answer'] }}</label>
-                    <input class="hidden" type="radio" name="answer" id="s_answer" class="hidden">
+                    <input class="hidden" type="radio" name="answer" id="s_answer" value="{{ $quiz['s_answer'] }}">
                 </div>
                 <div class="input">
                     <div class="label">C</div>
                     <label for="t_answer">{{ $quiz['t_answer'] }}</label>
-                    <input class="hidden" type="radio" name="answer" id="t_answer" class="hidden">
+                    <input class="hidden" type="radio" name="answer" id="t_answer" value="{{ $quiz['t_answer'] }}">
                 </div>
                 <div class="input">
                     <div class="label">D</div>
                     <label for="fth-answer">{{ $quiz['fth-answer'] }}</label>
-                    <input class="hidden" type="radio" name="answer" id="fth-answer" class="hidden">
+                    <input class="hidden" type="radio" name="answer" id="fth-answer" value="{{ $quiz['fth-answer'] }}">
                 </div>
+                <input type="hidden" id="goodAnswer" value="{{ $quiz['real_answer'] }}">
                 <input class="button" type="submit" value="Submit Answer">
             </form>
         </div>
@@ -59,6 +61,20 @@
         <img class="ellipse ellipse-2" src="{{ asset('img/ellipse2.svg') }}" alt="ellipse">
     </div>
 </div>
+<script>
+    document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const selectedAnswer = document.querySelector('input[name="answer"]:checked').value;
+        const goodAnswer = document.querySelector('#goodAnswer').value;
+        if (selectedAnswer === goodAnswer) {
+            console.log('good answer')
+        } else {
+            console.log('bad answer')
+        }
+    })
+</script>
+
 </body>
 </html>
 
