@@ -176,6 +176,14 @@ label,
     }
 }
 
+.input:has(input.good-answer) {
+    transition: 0.3s ease-in-out;
+    .good {
+        display: block;
+        color: #26D782;
+    }
+}
+
 
 .button, .next-question {
     display: flex;

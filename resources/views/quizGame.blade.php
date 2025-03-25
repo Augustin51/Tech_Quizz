@@ -82,7 +82,7 @@
         if(selectedAnswer != null) {
             buttonSwitch.classList.add('hidden');
             nextQuestion.classList.remove('hidden');
-
+            
             if (selectedAnswer.value === goodAnswer.value) {
                 console.log('good answer')
                 selectedAnswer.classList.add('correct-answer')
