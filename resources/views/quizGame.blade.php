@@ -20,25 +20,32 @@
         <div>
             <p>Question {{ $quiz['nb_question'] }} of 10 </p>
             <h2>{{ $quiz['name_question'] }}</h2>
-
-            <input type="range" name="range" min="0" max="10" value="{{ $quiz['nb_question'] }}" disabled>
+            <div class="slider-wrapper-wrapper">
+                <div class="slider-wrapper">
+                    <div class="slider" style=" background-color:#A729F5; height: 100%; width: {{ $quiz['nb_question'] * 10 }}%"></div>
+                </div>
+            </div>
         </div>
         <div>
             <form action="/quiz/{{ $quiz['id_quiz'] }}/{{ $quiz['nb_question'] }}">
                 @csrf
                 <div class="input">
+                    <div class="label">A</div>
                     <label for="f_answer">{{ $quiz['f_answer'] }}</label>
                     <input class="hidden" type="radio" name="answer" id="f_answer" value="50cm" class="hidden">
                 </div>
                 <div class="input">
+                    <div class="label">B</div>
                     <label for="s_answer">{{ $quiz['s_answer'] }}</label>
                     <input class="hidden" type="radio" name="answer" id="s_answer" class="hidden">
                 </div>
                 <div class="input">
+                    <div class="label">C</div>
                     <label for="t_answer">{{ $quiz['t_answer'] }}</label>
                     <input class="hidden" type="radio" name="answer" id="t_answer" class="hidden">
                 </div>
                 <div class="input">
+                    <div class="label">D</div>
                     <label for="fth-answer">{{ $quiz['fth-answer'] }}</label>
                     <input class="hidden" type="radio" name="answer" id="fth-answer" class="hidden">
                 </div>
