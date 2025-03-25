@@ -59,7 +59,11 @@
                 </div>
                 <input type="hidden" id="goodAnswer" value="{{ $quiz['real_answer'] }}">
                 <input class="button" type="submit" value="Submit Answer">
-                <a href="/quiz/{{ $quiz['id_quiz'] }}/{{ $quiz['id_question'] + 1 }}" class="next-question hidden">Next Question</a>
+                @if($quiz['nb_question'] != 10)
+                    <a href="/quiz/{{ $quiz['id_quiz'] }}/{{ $quiz['nb_question'] + 1 }}" class="next-question hidden">Next Question</a>
+                @else
+                    <a href="/quiz/{{ $quiz['id_quiz'] }}/result" class="next-question hidden">See result</a>
+                @endif
             </form>
         </div>
 
@@ -82,7 +86,7 @@
         if(selectedAnswer != null) {
             buttonSwitch.classList.add('hidden');
             nextQuestion.classList.remove('hidden');
-            
+
             if (selectedAnswer.value === goodAnswer.value) {
                 console.log('good answer')
                 selectedAnswer.classList.add('correct-answer')
@@ -90,7 +94,10 @@
             } else {
                 console.log('bad answer')
                 selectedAnswer.classList.add('wrong-answer')
-                goodAnswer.classList.add('good-answer')
+                inputs.forEach((input) => {
+                    console.log(input.value)
+                    if(input.value === goodAnswer.value) input.classList.add('good-answer')
+                })
             }
             inputs.forEach((input) => input.disabled = true)
         }
