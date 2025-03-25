@@ -85,7 +85,11 @@
         } else {
             console.log('bad answer')
             selectedAnswer.classList.add('wrong-answer')
-            goodAnswer.classList.add('good-answer')
+            inputs.forEach((input) => {
+                console.log(input.value)
+                if(input.value === goodAnswer.value) input.classList.add('good-answer')
+            })
+
         }
         inputs.forEach((input) => input.disabled = true)
     })
