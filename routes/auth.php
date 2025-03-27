@@ -61,4 +61,5 @@ Route::middleware('auth')->group(function () {
         ->name("quiz");
 
     Route::get('/quiz/{id_quiz}/{nb_question}', [\App\Http\Controllers\QuzzController::class, 'displayOne']);
+    Route::get('/quiz/{id_quiz}/{nb_question}/error', [\App\Http\Controllers\QuzzController::class, 'displayOneError']);
 });

@@ -1,3 +1,8 @@
+@php
+    $score = session('score');
+    session()->forget('score');
+@endphp
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,7 +31,7 @@
             <div class="right">
                 <div class="container-scored">
                     <p class="name-quiz">{{$nameQuiz}}</p>
-                    <p class="scored">8</p>
+                    <p class="scored">@php echo $score; @endphp</p>
                     <p class="out-of">out of 10</p>
                 </div>
                 <a href="/quiz" class="play-again">Play Again</a>
