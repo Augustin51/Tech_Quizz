@@ -52,8 +52,8 @@
                 </div>
                 <div class="input">
                     <div class="label">D</div>
-                    <label for="fth-answer">{{ $quiz['fth-answer'] }}</label>
-                    <input class="hidden" type="radio" name="answer" id="fth-answer" value="{{ $quiz['fth-answer'] }}">
+                    <label for="fth_answer">{{ $quiz['fth_answer'] }}</label>
+                    <input class="hidden" type="radio" name="answer" id="fth_answer" value="{{ $quiz['fth_answer'] }}">
                     <div class="good"><i class="ri-check-line"></i></div>
                     <div class="bad"><i class="ri-close-line"></i></div>
                 </div>
@@ -90,7 +90,6 @@
             if (selectedAnswer.value === goodAnswer.value) {
                 console.log('good answer')
                 selectedAnswer.classList.add('correct-answer')
-
             } else {
                 console.log('bad answer')
                 selectedAnswer.classList.add('wrong-answer')
