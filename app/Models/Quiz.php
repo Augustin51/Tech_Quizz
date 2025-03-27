@@ -1,12 +1,16 @@
 <?php
-
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Quiz extends Model
 {
-    protected $table = 'quiz'; // Indique à Laravel que la table s'appelle "quiz"
+    use HasFactory;
 
-    protected $fillable = ['ID_QUIZ', 'NAME_QUIZ'];
+    protected $table = 'quiz';
+    protected $fillable = ['name_quiz'];
+
+    public $timestamps = false;
 }
+
