@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quiz;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,10 @@ class AdminController extends Controller
         $this->checkAdmin();
 
         $users = User::all();
-        return view("admin", ["data" => $users]);
+
+        $quiz = Quiz::all();
+
+        return view("admin", ["data" => $users, "quizzes" => $quiz]);
     }
 
     public function destroy($id)
