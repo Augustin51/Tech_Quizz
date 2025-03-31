@@ -17,8 +17,9 @@
     <div>
         <img class="ellipse ellipse-1" src="{{ asset('img/ellipse1.svg') }}" alt="ellipse">
     </div>
+    <h1>{{ $nameQuiz }}</h1>
     <div class="form">
-        <h1>{{ $nameQuiz }}</h1>
+        <div class="top">
         <div>
             <p>Question {{ $quiz['nb_question'] }} of 10 </p>
             <h2>{{ $quiz['name_question'] }}</h2>
@@ -28,7 +29,8 @@
                 </div>
             </div>
         </div>
-        <div>
+        </div>
+        <div class="bot">
             <form id="quizForm" action="{{ route('quiz.check', ['idQuiz' => $quiz['id_quiz'], 'nbQuestion' => $quiz['nb_question']]) }}" method="POST">
                 @csrf
                 <div class="input">

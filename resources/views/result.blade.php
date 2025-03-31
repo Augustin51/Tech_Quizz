@@ -1,7 +1,3 @@
-@php
-var_dump($score)
-@endphp
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,9 +8,24 @@ var_dump($score)
     <title>Result</title>
     <link rel="stylesheet" href="{{ asset('css/result.css') }}">
 </head>
-<body>
+<script>window.onload = (event) => {
+        let reloadData = JSON.parse(localStorage.getItem('reloadData')) || { count: 0, timestamp: Date.now() };
 
-</body>
+        // Reset count if 5 minutes have passed since last reload
+        if (Date.now() - reloadData.timestamp > 300000) {
+            reloadData = { count: 0, timestamp: Date.now() };
+        }
+
+        if (reloadData.count === 2) {
+            localStorage.removeItem('reloadData'); // Reset
+            window.location.href = '/quiz';
+        } else {
+            reloadData.count++;
+            reloadData.timestamp = Date.now();
+            localStorage.setItem('reloadData', JSON.stringify(reloadData));
+        }
+    };
+</script>
 <body class="font-sans text-gray-900" style="background-color: #F4F6FA">
 <div class="min-h-screen flex flex-col justify-center items-center pt-6 sm:pt-0 bg-gray-100">
     <div>
