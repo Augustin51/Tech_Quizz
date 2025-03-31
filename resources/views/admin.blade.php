@@ -48,8 +48,8 @@
                             </button>
                         </form>
 
-                        <button type="button" class="btn btn-success">Details</button>
-                        <button type="button" class="btn btn-primary">Update</button>
+                        <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary">Update</a>
+                        <button type="button" class="btn btn-primary">view</button>
 
                     </td>
                 </tr>
