@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 Route::get('/quiz/{idQuiz}/result', [\App\Http\Controllers\QuzzController::class, 'finalResult']);
-Route::post('/quiz/{idQuiz}/{nbQuestion}/check', [\App\Http\Controllers\QuzzController::class, 'checkAnswer'])->name('quiz.check');
+    Route::post('/quiz/{idQuiz}/{nbQuestion}/check', [\App\Http\Controllers\QuzzController::class, 'checkAnswer'])->name('quiz.check');
 
 
 Route::get('/dashboard', function () {

@@ -32,9 +32,10 @@ class QuzzController extends Controller
         return view('quizGame', ['quiz' => $quizData->toArray(), 'nameQuiz' => $nameQuiz->toArray()['name_quiz']]);
     }
 
-
     public function checkAnswer(Request $request, int $idQuiz, int $nbQuestion)
     {
+
+
         \Illuminate\Support\Facades\Log::info(session()->all());
 
         $quizData = Question::where('id_quiz', $idQuiz)
@@ -45,12 +46,13 @@ class QuzzController extends Controller
             return redirect()->back()->with('error', 'Question not found.');
         }
 
+        /*$res = $request->validate(['answer' => 'required|string'], ['answer.required' => 'Hej']);
+        exit;*/
+
         $submittedAnswer = $request->input('answer');
         $correctAnswer = $quizData->real_answer;
-
         if ($submittedAnswer === $correctAnswer) {
             session()->increment('score');
-
         }
 // After updating, check if the score is updated
 

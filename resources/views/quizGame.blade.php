@@ -34,7 +34,7 @@
                 <div class="input">
                     <div class="label">A</div>
                     <label for="f_answer">{{ $quiz['f_answer'] }}</label>
-                    <input class="hidden" type="radio" name="answer" id="f_answer" value="{{ $quiz['f_answer'] }}">
+                    <input class="hidden" type="radio" name="answer" id="f_answer" value="{{ $quiz['f_answer'] }}" checked>
                     <div class="good"><i class="ri-check-line"></i></div>
                     <div class="bad"><i class="ri-close-line"></i></div>
                 </div>
@@ -63,6 +63,10 @@
                 <input class="button" type="submit" value="Submit Answer">
             </form>
 
+            {{-- @if($errors->has('answer'))
+                <p>Caca ;</p>
+            @endif--}}
+
         </div>
 
 
@@ -72,20 +76,20 @@
     </div>
 </div>
 
-    <script>
-        let submitted = false;
+        <script>
+            let submitted = localStorage.getItem('submitted') === 'false';
 
-        document.querySelector('form').addEventListener('submit', (e) => {
-            if (!submitted) {
-                e.preventDefault(); // Prevents form submission only the first time
+            document.querySelector('form').addEventListener('submit', (e) => {
+                if (!submitted) {
+                    e.preventDefault(); // Prevents form submission only the first time
 
-                const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-                const submit = document.querySelector('input[type="submit"]')
-                const goodAnswer = document.querySelector('#goodAnswer');
-                const inputs = document.querySelectorAll('input.hidden');
+                    const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+                    const submit = document.querySelector('input[type="submit"]');
+                    const goodAnswer = document.querySelector('#goodAnswer');
+                    const inputs = document.querySelectorAll('input.hidden');
 
-                if (selectedAnswer !== null) {
-                    submit.value = "Next question"
+                    submit.value = "Next question";
+
                     if (selectedAnswer.value === goodAnswer.value) {
                         console.log('good answer');
                         selectedAnswer.classList.add('correct-answer');
@@ -93,16 +97,18 @@
                         console.log('bad answer');
                         selectedAnswer.classList.add('wrong-answer');
                         inputs.forEach((input) => {
-                            console.log(input.value)
+                            console.log(input.value);
                             if (input.value === goodAnswer.value) input.classList.add('good-answer');
                         });
+                        inputs.forEach((input) => input.disabled = true);
                     }
-                    inputs.forEach((input) => input.disabled = true);
+
                     submitted = true; // Allow normal form submission next time
+                    localStorage.setItem('submitted', 'true'); // Store in localStorage
                 }
-            }
-        });
-    </script>
+            });
+
+        </script>
 
 </body>
 </html>

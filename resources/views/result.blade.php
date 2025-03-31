@@ -1,6 +1,5 @@
 @php
-    $score = session('score');
-    session()->forget('score');
+var_dump($score)
 @endphp
 
 <!doctype html>
