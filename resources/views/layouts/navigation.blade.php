@@ -17,7 +17,7 @@
                     </x-nav-link>
 
                     <x-nav-link :href="route('quiz')" :active="request()->routeIs('quiz')">
-                        {{ __('quiz') }}
+                        {{ __('Quiz') }}
                     </x-nav-link>
                 </div>
             </div>
