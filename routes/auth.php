@@ -69,6 +69,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])
         ->name("admin");
 
+    Route::delete('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('users.destroy');
+
     Route::get('/quiz/{id_quiz}/{nb_question}', [QuzzController::class, 'displayOne']);
 
     Route::get('/resultsHistory/{userId}', [ResultsHistoryControlleur::class, 'index']);
