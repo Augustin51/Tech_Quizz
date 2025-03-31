@@ -1,3 +1,5 @@
+<p>Current Score: {{ session()->get('score') }}</p>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,8 +17,9 @@
     <div>
         <img class="ellipse ellipse-1" src="{{ asset('img/ellipse1.svg') }}" alt="ellipse">
     </div>
+    <h1>{{ $nameQuiz }}</h1>
     <div class="form">
-        <h1>{{ $nameQuiz }}</h1>
+        <div class="top">
         <div>
             <p>Question {{ $quiz['nb_question'] }} of 10 </p>
             <h2>{{ $quiz['name_question'] }}</h2>
@@ -26,13 +29,14 @@
                 </div>
             </div>
         </div>
-        <div>
-            <form action="" method="post">
+        </div>
+        <div class="bot">
+            <form id="quizForm" action="{{ route('quiz.check', ['idQuiz' => $quiz['id_quiz'], 'nbQuestion' => $quiz['nb_question']]) }}" method="POST">
                 @csrf
                 <div class="input">
                     <div class="label">A</div>
                     <label for="f_answer">{{ $quiz['f_answer'] }}</label>
-                    <input class="hidden" type="radio" name="answer" id="f_answer" value="{{ $quiz['f_answer'] }}">
+                    <input class="hidden" type="radio" name="answer" id="f_answer" value="{{ $quiz['f_answer'] }}" checked>
                     <div class="good"><i class="ri-check-line"></i></div>
                     <div class="bad"><i class="ri-close-line"></i></div>
                 </div>
@@ -52,19 +56,21 @@
                 </div>
                 <div class="input">
                     <div class="label">D</div>
+
                     <label for="fth_answer">{{ $quiz['fth_answer'] }}</label>
                     <input class="hidden" type="radio" name="answer" id="fth_answer" value="{{ $quiz['fth_answer'] }}">
+
                     <div class="good"><i class="ri-check-line"></i></div>
                     <div class="bad"><i class="ri-close-line"></i></div>
                 </div>
                 <input type="hidden" id="goodAnswer" value="{{ $quiz['real_answer'] }}">
                 <input class="button" type="submit" value="Submit Answer">
-                @if($quiz['nb_question'] != 10)
-                    <a href="/quiz/{{ $quiz['id_quiz'] }}/{{ $quiz['nb_question'] + 1 }}" class="next-question hidden">Next Question</a>
-                @else
-                    <a href="/quiz/{{ $quiz['id_quiz'] }}/result" class="next-question hidden">See result</a>
-                @endif
             </form>
+
+            {{-- @if($errors->has('answer'))
+                <p>Caca ;</p>
+            @endif--}}
+
         </div>
 
 
@@ -73,35 +79,40 @@
         <img class="ellipse ellipse-2" src="{{ asset('img/ellipse2.svg') }}" alt="ellipse">
     </div>
 </div>
-<script>
-    document.querySelector('form').addEventListener('submit', (e) => {
-        e.preventDefault();
 
-        const buttonSwitch = document.querySelector('.button');
-        const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-        const goodAnswer = document.querySelector('#goodAnswer');
-        const inputs = document.querySelectorAll('input.hidden');
-        const nextQuestion = document.querySelector('.next-question');
+        <script>
+            let submitted = localStorage.getItem('submitted') === 'false';
 
-        if(selectedAnswer != null) {
-            buttonSwitch.classList.add('hidden');
-            nextQuestion.classList.remove('hidden');
+            document.querySelector('form').addEventListener('submit', (e) => {
+                if (!submitted) {
+                    e.preventDefault(); // Prevents form submission only the first time
 
-            if (selectedAnswer.value === goodAnswer.value) {
-                console.log('good answer')
-                selectedAnswer.classList.add('correct-answer')
-            } else {
-                console.log('bad answer')
-                selectedAnswer.classList.add('wrong-answer')
-                inputs.forEach((input) => {
-                    console.log(input.value)
-                    if(input.value === goodAnswer.value) input.classList.add('good-answer')
-                })
-            }
-            inputs.forEach((input) => input.disabled = true)
-        }
-    })
-</script>
+                    const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+                    const submit = document.querySelector('input[type="submit"]');
+                    const goodAnswer = document.querySelector('#goodAnswer');
+                    const inputs = document.querySelectorAll('input.hidden');
+
+                    submit.value = "Next question";
+
+                    if (selectedAnswer.value === goodAnswer.value) {
+                        console.log('good answer');
+                        selectedAnswer.classList.add('correct-answer');
+                    } else {
+                        console.log('bad answer');
+                        selectedAnswer.classList.add('wrong-answer');
+                        inputs.forEach((input) => {
+                            console.log(input.value);
+                            if (input.value === goodAnswer.value) input.classList.add('good-answer');
+                        });
+                        inputs.forEach((input) => input.disabled = true);
+                    }
+
+                    submitted = true; // Allow normal form submission next time
+                    localStorage.setItem('submitted', 'true'); // Store in localStorage
+                }
+            });
+
+        </script>
 
 </body>
 </html>
