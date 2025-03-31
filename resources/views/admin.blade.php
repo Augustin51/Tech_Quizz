@@ -76,6 +76,32 @@
         </div>
 
 
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">quiz</th>
+                <th scope="col">action</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            @foreach($quizzes as $quiz)
+                <tr>
+                    <th scope="row">{{$quiz->id_quiz}}</th>
+                    <td>{{$quiz->name_quiz}}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger">suprimer</button>
+
+                        <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary">Update</a>
+                        <button type="button" class="btn btn-primary">view</button>
+
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+
     </ul>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
