@@ -19,6 +19,14 @@
                     <x-nav-link :href="route('quiz')" :active="request()->routeIs('quiz')">
                         {{ __('Quiz') }}
                     </x-nav-link>
+
+
+
+                    @if(Auth::user()->role == 1)
+                        <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
+                            {{ __('admin') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
