@@ -15,6 +15,7 @@ class AdminController extends Controller
             abort(403, 'Accès interdit. Réservé aux administrateurs.');
         }
     }
+
     public function index()
     {
         $this->checkAdmin();
@@ -30,5 +31,34 @@ class AdminController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return redirect("/admin");
+    }
+
+    public function edit($id)
+    {
+        $this->checkAdmin();
+
+        $user = User::findOrFail($id);
+        return view('edit', compact('user'));
+    }
+
+
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'role' => 'required|integer',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+        ]);
+
+
+        return redirect('/admin')->with('success', 'Utilisateur mis à jour.');
     }
 }
