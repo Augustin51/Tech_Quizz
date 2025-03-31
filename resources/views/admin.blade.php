@@ -27,11 +27,29 @@
             <table>
                 <thead>
                 <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">nom</th>
-                    <th scope="col">email</th>
-                    <th scope="col">role</th>
-                    <th scope="col">action</th>
+                    <th scope="row">{{$user->id}}</th>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>
+                        @if($user->role == 1)
+                            admin
+                        @else
+                            user
+                        @endif
+                    </td>
+                    <td>
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit" onclick="return confirm('Supprimer cet utilisateur ?')">
+                                Supprimer
+                            </button>
+                        </form>
+
+                        <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary">Update</a>
+                        <button type="button" class="btn btn-primary">view</button>
+
+                    </td>
                 </tr>
                 </thead>
                 <tbody>
