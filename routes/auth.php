@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -61,4 +62,7 @@ Route::middleware('auth')->group(function () {
         ->name("quiz");
 
     Route::get('/quiz/{id_quiz}/{nb_question}', [\App\Http\Controllers\QuzzController::class, 'displayOne']);
+
+    Route::get('/admin', [AdminController::class, 'index'])
+        ->name("admin");
 });
