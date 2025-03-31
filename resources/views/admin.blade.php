@@ -114,8 +114,18 @@
                             <td>
                                 <button type="button" class="btn btn-danger">supprimer</button>
 
-                                <a href="" class="btn btn-primary">Update</a>
-                                <button type="button" class="btn btn-primary">view</button>
+            @foreach($quizzes as $quiz)
+                <tr>
+                    <th scope="row">{{$quiz->id_quiz}}</th>
+                    <td>{{$quiz->name_quiz}}</td>
+                    <td>
+                        <form action="{{ route('quiz.destroy', $quiz->id_quiz) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit" onclick="return confirm('Supprimer ce quiz ?')">
+                                Supprimer
+                            </button>
+                        </form>
 
                             </td>
                         </tr>
