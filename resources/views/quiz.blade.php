@@ -1,3 +1,4 @@
+@php session()->forget('score') @endphp
 <!DOCTYPE html>
 <html lang="fr">
 <head>
