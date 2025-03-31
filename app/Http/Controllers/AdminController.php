@@ -23,9 +23,16 @@ class AdminController extends Controller
 
         $users = User::all();
 
+        return view("admin", ["data" => $users]);
+    }
+
+    public function quiz()
+    {
+        $this->checkAdmin();
+
         $quiz = Quiz::all();
 
-        return view("admin", ["data" => $users, "quizzes" => $quiz]);
+        return view("admin", ["quizzes" => $quiz]);
     }
 
     public function destroy($id)
