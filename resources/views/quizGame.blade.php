@@ -54,8 +54,10 @@
                 </div>
                 <div class="input">
                     <div class="label">D</div>
-                    <label for="fth_answer">{{ $quiz['fth-answer'] }}</label>
-                    <input class="hidden" type="radio" name="answer" id="fth_answer" value="{{ $quiz['fth-answer'] }}">
+
+                    <label for="fth_answer">{{ $quiz['fth_answer'] }}</label>
+                    <input class="hidden" type="radio" name="answer" id="fth_answer" value="{{ $quiz['fth_answer'] }}">
+
                     <div class="good"><i class="ri-check-line"></i></div>
                     <div class="bad"><i class="ri-close-line"></i></div>
                 </div>
