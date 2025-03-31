@@ -45,6 +45,8 @@ class AdminController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->checkAdmin();
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
