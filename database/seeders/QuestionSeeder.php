@@ -411,7 +411,7 @@ class QuestionSeeder extends Seeder
                 't_answer' => 'Photoshop',
                 'fth_answer' => 'Figma',
                 'real_answer' => 'Lighthouse',
-            ],
+            ]
         ];
 
         foreach ($questions as $question) {
