@@ -37,6 +37,15 @@ class AdminController extends Controller
         return redirect("/admin");
     }
 
+    public function destroyQuiz($id)
+    {
+        $this->checkAdmin();
+
+        $user = Quiz::where("id_quiz", $id);
+        $user->delete();
+        return redirect("/admin");
+    }
+
     public function edit($id)
     {
         $this->checkAdmin();
