@@ -71,6 +71,8 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('users.destroy');
 
+    Route::delete('/admin/quizdelete/{id}', [AdminController::class, 'destroyQuiz'])->name('quiz.destroy');
+
     Route::get('/quiz/{id_quiz}/{nb_question}', [QuzzController::class, 'displayOne']);
 
     Route::get('/resultsHistory/{userId}', [ResultsHistoryControlleur::class, 'index']);
