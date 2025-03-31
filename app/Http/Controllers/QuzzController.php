@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Quiz;
 use App\Models\Question;
+use App\Models\ResultsHistory;
 use Illuminate\Container\Attributes\Log;
 use Illuminate\Http\Request;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use function Psy\debug;
+use Illuminate\Support\Facades\Auth;
 
 
 class QuzzController extends Controller
@@ -66,8 +68,19 @@ class QuzzController extends Controller
 
     public function finalResult(int $id_quiz)
     {
-        $nameQuiz = Quiz::where('id_quiz', $id_quiz)->first();
+        $quiz = Quiz::where('id_quiz', $id_quiz)->first();
 
-        return view('result', ['nameQuiz' => $nameQuiz->toArray()['name_quiz'], 'score' => session('score')]);
+        $score = session('score');
+
+        ResultsHistory::create([
+            'id_user' => Auth::id(),
+            'name_quiz' => $quiz->name_quiz,
+            'score' => $score,
+            'date' => now(),
+        ]);
+
+        session(['score' => 0]);
+
+        return view('result', ['nameQuiz' => $quiz->name_quiz, 'score' => $score]);
     }
 }
