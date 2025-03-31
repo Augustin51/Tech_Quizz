@@ -1,11 +1,11 @@
-@php session()->forget('score') @endphp
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
-    <link rel="stylesheet" href="{{asset("css/quiz.css")}}">
+    <link rel="stylesheet" href="{{ asset("css/quiz.css") }}">
+    <link rel="stylesheet" href="{{ asset('css/resultsHistory.css') }}">
     <link
         href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
         rel="stylesheet"
@@ -16,37 +16,31 @@
     <div>
         <img class="ellipse ellipse-1" src="{{ asset('img/ellipse1.svg') }}" alt="ellipse">
     </div>
-
     <div class="form">
-        <a href="/dashboard"  class="account-icon">
-            <i class="ri-account-circle-fill"></i>
-        </a>
-
-        <div class="container">
-            <div class="first-div">
-                <h1>Welcome to the <span class="bold">Front-end Quiz !</span></h1>
-                <p class="second-text">pick a subject to get started</p>
-            </div>
-
-            <div class="second-div">
-                @foreach($quizzes as $quiz)
-
-                    <a href="/quiz/{{$quiz->id_quiz}}/1" class="quiz-button">
-                        <p>{{ $quiz->name_quiz }}</p>
-
-                    </a>
-
+        <h1>My result</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Quiz Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($results as $result)
+                    <tr>
+                        <td>{{ \Carbon\Carbon::parse($result->date)->format('d F Y') }}</td>
+                        <td>{{ $result->name_quiz }}</td>
+                        <td>{{ $result->score }}</td>
+                    </tr>
                 @endforeach
-            </div>
-        </div>
-
+            </tbody>
+        </table>
     </div>
-
     <div>
         <img class="ellipse ellipse-2" src="{{ asset('img/ellipse2.svg') }}" alt="ellipse">
     </div>
 </div>
 </body>
-
 </html>
 

@@ -73,6 +73,10 @@ h1, .name-quiz {
 
 /* responsive */
 @media screen and (min-width: 768px) {
+
+    .ellipse {
+        width: 40%;
+    }
     body {
         padding: 64px;
     }
@@ -95,6 +99,9 @@ h1, .name-quiz {
 }
 
 @media screen and (min-width: 1024px) {
+    .ellipse {
+        width: 35%;
+    }
     body {
         padding: 32px;
     }
