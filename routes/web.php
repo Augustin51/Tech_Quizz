@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/users/{id}/edit', [AdminController::class, 'edit'])->name('admin.users.edit');
     Route::put('/admin/users/{id}', [AdminController::class, 'update'])->name('admin.users.update');
     Route::get('/admin/users', [AdminController::class, 'index'])->name('admin.users');
+    Route::get('/admin/quiz', [AdminController::class, 'quiz'])->name('admin.quiz');
 
 });
 

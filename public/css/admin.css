@@ -10,10 +10,51 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     background-color: white;
     height: 100vh;
     width: 15%;
 }
+
+.links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    width: 80%;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.actually {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left {
+    border-radius: 0 10px 10px 0 ;
+    width: 10px;
+    height: 40px;
+    background-color: #4880FF;
+}
+
+.actual {
+    background-color: #4880FF;
+    color: white;
+}
+
 
 .a {
     width: 70%;
