@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('result_history', function (Blueprint $table) {
+        Schema::create('results_history', function (Blueprint $table) {
             $table->id('id_result_history');
             $table->integer('id_user');
             $table->string('name_quiz');
-            $table->string('score');
+            $table->integer('score');
             $table->dateTime('date')->useCurrent();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('result_history');
+        Schema::dropIfExists('results_history');
     }
 };

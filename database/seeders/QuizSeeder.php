@@ -18,7 +18,16 @@ class QuizSeeder extends Seeder
             ],
             [
                 'name_quiz' => 'HTML Quiz'
-            ]
+            ],
+            [
+                'name_quiz' => 'CSS Quiz'
+            ],
+            [
+                'name_quiz' => 'Web Accessibility Quiz'
+            ],
+            [
+                'name_quiz' => 'HTML Quiz'
+            ],
         ];
 
         foreach ($quizzes as $quiz) {

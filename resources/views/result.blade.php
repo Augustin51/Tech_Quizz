@@ -1,7 +1,3 @@
-@php
-var_dump($score)
-@endphp
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,6 +17,7 @@ var_dump($score)
         <img class="ellipse ellipse-1" src="{{ asset('img/ellipse1.svg') }}" alt="ellipse">
     </div>
     <div class="form">
+        <a href="/resultsHistory/{{ Auth::id() }}" class="see-results">See all Results</a>
         <h1>{{$nameQuiz}}</h1>
         <div class="flex">
             <div>

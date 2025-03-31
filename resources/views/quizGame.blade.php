@@ -1,5 +1,3 @@
-<p>Current Score: {{ session()->get('score') }}</p>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -64,11 +62,6 @@
                 <input type="hidden" id="goodAnswer" value="{{ $quiz['real_answer'] }}">
                 <input class="button" type="submit" value="Submit Answer">
             </form>
-
-            {{-- @if($errors->has('answer'))
-                <p>Caca ;</p>
-            @endif--}}
-
         </div>
 
 
@@ -83,7 +76,7 @@
 
             document.querySelector('form').addEventListener('submit', (e) => {
                 if (!submitted) {
-                    e.preventDefault(); // Prevents form submission only the first time
+                    e.preventDefault();
 
                     const selectedAnswer = document.querySelector('input[name="answer"]:checked');
                     const submit = document.querySelector('input[type="submit"]');
@@ -105,8 +98,8 @@
                         inputs.forEach((input) => input.disabled = true);
                     }
 
-                    submitted = true; // Allow normal form submission next time
-                    localStorage.setItem('submitted', 'true'); // Store in localStorage
+                    submitted = true;
+                    localStorage.setItem('submitted', 'true');
                 }
             });
 

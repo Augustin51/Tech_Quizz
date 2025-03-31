@@ -31,7 +31,7 @@
                     <tr>
                         <td>{{ \Carbon\Carbon::parse($result->date)->format('d F Y') }}</td>
                         <td>{{ $result->name_quiz }}</td>
-                        <td>{{ $result->score }}</td>
+                        <td>{{ $result->score }}/10</td>
                     </tr>
                 @endforeach
             </tbody>
